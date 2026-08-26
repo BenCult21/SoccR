@@ -160,17 +160,24 @@ button:focus-visible {
 }
 
 .btn--ghost {
-  background: rgba(51, 225, 122, 0.08);
-  border: 2px solid rgba(51, 225, 122, 0.3);
+  background: rgba(51, 225, 122, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 2px solid rgba(51, 225, 122, 0.35);
   color: var(--text);
   transition: all 0.4s var(--ease-kick);
+  box-shadow: 0 0 30px rgba(51, 225, 122, 0.08),
+              0 0 1px rgba(255, 255, 255, 0.1) inset;
 }
 
 .btn--ghost:hover {
-  background: rgba(51, 225, 122, 0.18);
-  border-color: rgba(51, 225, 122, 0.7);
+  background: rgba(51, 225, 122, 0.22);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-color: rgba(51, 225, 122, 0.8);
   transform: translateY(-5px);
-  box-shadow: 0 18px 40px rgba(51, 225, 122, 0.25);
+  box-shadow: 0 0 50px rgba(51, 225, 122, 0.3),
+              0 0 1px rgba(255, 255, 255, 0.2) inset;
 }
 
 .btn--large { padding: 1.15rem 2.2rem; font-size: 1.05rem; }
@@ -187,11 +194,12 @@ button:focus-visible {
   align-items: center;
   gap: 1.5rem;
   padding: 0.9rem 2rem;
-  background: linear-gradient(180deg, rgba(7, 15, 11, 0.96) 0%, rgba(7, 15, 11, 0.88) 100%);
-  backdrop-filter: blur(25px) saturate(160%);
-  -webkit-backdrop-filter: blur(25px) saturate(160%);
-  border-bottom: 1px solid rgba(51, 225, 122, 0.2);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  background: rgba(7, 15, 11, 0.7);
+  backdrop-filter: blur(35px) saturate(180%);
+  -webkit-backdrop-filter: blur(35px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.3),
+              0 0 1px rgba(255, 255, 255, 0.15) inset;
 }
 
 .brand {
@@ -532,36 +540,291 @@ main { scroll-behavior: smooth; }
   position: relative;
 }
 
-.phone-shot {
-  width: min(78%, 300px);
-  height: auto;
+/* ============================================================
+   UI MOCKUPS – GLASSMORPHIC DESIGN
+   ============================================================ */
+.ui-mockup {
+  width: 100%;
+  max-width: 340px;
+  background: rgba(15, 26, 21, 0.6);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 28px;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: 0 0 60px rgba(51, 225, 122, 0.1),
+              0 0 1px rgba(255, 255, 255, 0.3) inset;
   transition: all 0.5s var(--ease-kick);
-  transform: translateY(0) scale(1) rotateX(0deg);
-  filter: brightness(1) saturate(1.15);
-  position: relative;
-  z-index: 1;
+  animation: mockupFloat 5s ease-in-out infinite;
 }
 
-.feature__media:hover .phone-shot {
-  transform: translateY(-22px) scale(1.06) perspective(1200px) rotateX(8deg);
-  filter: brightness(1.2) saturate(1.35) drop-shadow(0 40px 80px rgba(51, 225, 122, 0.35));
+@keyframes mockupFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-18px); }
+}
+
+.feature__media:hover .ui-mockup {
+  background: rgba(15, 26, 21, 0.8);
+  box-shadow: 0 0 80px rgba(51, 225, 122, 0.2),
+              0 0 1px rgba(255, 255, 255, 0.4) inset;
+  transform: translateY(-8px);
+}
+
+.ui-header {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.ui-header .ui-status {
+  width: 16px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 2px;
+}
+
+.ui-title {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text);
+}
+
+.ui-subtitle {
+  font-size: 0.75rem;
+  color: var(--text-faint);
+}
+
+.ui-content {
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Profile Mockup */
+.ui-mockup--profile .ui-content {
+  align-items: center;
+  text-align: center;
+}
+
+.ui-avatar {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, rgba(51, 225, 122, 0.3), rgba(255, 190, 69, 0.2));
+  border-radius: 50%;
+  border: 2px solid rgba(51, 225, 122, 0.4);
+  margin-bottom: 8px;
+}
+
+.ui-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.ui-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  margin-bottom: 16px;
+}
+
+.ui-stats {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  gap: 12px;
+}
+
+.ui-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  padding: 10px;
+  background: rgba(51, 225, 122, 0.08);
+  border-radius: 14px;
+  border: 1px solid rgba(51, 225, 122, 0.2);
+}
+
+.ui-value {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--green) 0%, var(--green-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.ui-unit {
+  font-size: 0.65rem;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+/* Leaderboard Mockup */
+.ui-rank {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: rgba(51, 225, 122, 0.06);
+  border-radius: 12px;
+  border: 1px solid rgba(51, 225, 122, 0.15);
+}
+
+.ui-rank-num {
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--green);
+  min-width: 28px;
+  text-align: center;
+}
+
+.ui-rank-name {
+  flex: 1;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.ui-rank-score {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--text-dim);
+  font-size: 0.9rem;
+}
+
+/* Discover Mockup */
+.ui-card {
+  padding: 12px;
+  background: rgba(51, 225, 122, 0.08);
+  border-radius: 12px;
+  border: 1px solid rgba(51, 225, 122, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ui-card:hover {
+  background: rgba(51, 225, 122, 0.15);
+  border-color: rgba(51, 225, 122, 0.4);
+  transform: translateY(-3px);
+}
+
+.ui-card-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.ui-card-meta {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+
+.ui-card-players {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--green);
+}
+
+/* Teams Mockup */
+.ui-team {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: rgba(51, 225, 122, 0.06);
+  border-radius: 12px;
+  border: 1px solid rgba(51, 225, 122, 0.15);
+}
+
+.ui-team-icon {
+  font-size: 1.8rem;
+  min-width: 44px;
+  text-align: center;
+}
+
+.ui-team-info {
+  flex: 1;
+}
+
+.ui-team-name {
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+.ui-team-members {
+  font-size: 0.75rem;
+  color: var(--text-faint);
+}
+
+/* TrackR Mockup */
+.ui-heatmap-container {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.ui-heatmap {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 15px rgba(51, 225, 122, 0.15));
+}
+
+.ui-stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.ui-stat-mini {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px;
+  background: rgba(51, 225, 122, 0.08);
+  border-radius: 10px;
+  border: 1px solid rgba(51, 225, 122, 0.15);
+}
+
+.ui-stat-value {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--green) 0%, var(--green-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.ui-stat-label {
+  font-size: 0.6rem;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 3px;
+  font-weight: 600;
 }
 
 .feature__media::before {
   content: "";
   position: absolute;
-  top: 6%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 82%;
-  max-width: 260px;
-  height: 32%;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, transparent 100%);
-  border-radius: 35px;
+  inset: 0;
+  border-radius: 28px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
   pointer-events: none;
-  opacity: 0.8;
+  opacity: 0.4;
   z-index: 2;
-  animation: glossFlare 3.5s ease-in-out infinite;
 }
 
 @keyframes glossFlare {
@@ -675,11 +938,14 @@ main { scroll-behavior: smooth; }
 
 .stat-accordion {
   margin-top: 2rem;
-  border: 1px solid var(--line);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: var(--radius-m);
   overflow: hidden;
-  background: rgba(51, 225, 122, 0.03);
-  backdrop-filter: blur(10px);
+  background: rgba(15, 26, 21, 0.5);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.2),
+              0 0 1px rgba(255, 255, 255, 0.1) inset;
 }
 
 .stat-item + .stat-item { border-top: 1px solid var(--line); }
@@ -927,18 +1193,25 @@ main { scroll-behavior: smooth; }
   position: relative;
   padding: 2.5rem;
   border-radius: var(--radius-l);
-  border: 1px solid var(--line);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   transition: all 0.4s var(--ease-kick);
   opacity: 0.65;
   transform: scale(0.97);
-  background: var(--surface);
+  background: rgba(16, 29, 22, 0.5);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.3),
+              0 0 1px rgba(255, 255, 255, 0.2) inset;
 }
 
-.pro__side--free { background: linear-gradient(135deg, var(--surface) 0%, rgba(51, 225, 122, 0.04) 100%); }
+.pro__side--free {
+  background: rgba(16, 29, 22, 0.4);
+  border-color: rgba(51, 225, 122, 0.3);
+}
 
 .pro__side--pro {
-  background: linear-gradient(160deg, rgba(51, 225, 122, 0.25), rgba(255, 190, 69, 0.12));
-  border-color: rgba(51, 225, 122, 0.6);
+  background: rgba(51, 225, 122, 0.15);
+  border-color: rgba(51, 225, 122, 0.5);
   position: relative;
   overflow: hidden;
 }
@@ -1309,8 +1582,8 @@ main { scroll-behavior: smooth; }
     max-width: 100%;
   }
 
-  .phone-shot {
-    width: min(85%, 280px);
+  .ui-mockup {
+    max-width: 300px;
   }
 
   .pro__split {

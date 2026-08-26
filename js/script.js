@@ -96,36 +96,39 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ---- 6) Hochzählende Stat-Zahlen (Profil-Artikel) ----
-  const counters = document.querySelectorAll(".stat-num[data-count-to]");
-  if ("IntersectionObserver" in window && counters.length) {
-    const animateCount = (el) => {
-      const target = parseInt(el.dataset.countTo, 10) || 0;
-      const duration = 900;
-      const start = performance.now();
+  // ---- 6) Hochzählende Stat-Zahlen (alle UI-Elemente) ----
+  const animateCount = (el, duration = 1200) => {
+    const targetStr = el.dataset.animate;
+    const target = parseFloat(targetStr) || 0;
+    const isDecimal = targetStr.includes('.');
+    const start = performance.now();
 
-      const step = (now) => {
-        const progress = Math.min((now - start) / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        el.textContent = Math.round(eased * target);
-        if (progress < 1) requestAnimationFrame(step);
-      };
-      requestAnimationFrame(step);
+    const step = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = eased * target;
+      el.textContent = isDecimal ? current.toFixed(1) : Math.round(current);
+      if (progress < 1) requestAnimationFrame(step);
     };
+    requestAnimationFrame(step);
+  };
 
+  const allCounters = document.querySelectorAll("[data-animate]");
+  if ("IntersectionObserver" in window && allCounters.length) {
     const counterObserver = new IntersectionObserver(
       (entries, obs) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
+          if (entry.isIntersecting && !entry.target.dataset.animated) {
+            entry.target.dataset.animated = "true";
             animateCount(entry.target);
             obs.unobserve(entry.target);
           }
         });
       },
-      { root: window.innerWidth > 720 ? main : null, threshold: 0.6 }
+      { threshold: 0.4 }
     );
 
-    counters.forEach((counter) => counterObserver.observe(counter));
+    allCounters.forEach((counter) => counterObserver.observe(counter));
   }
 
   // ---- 7) Parallax Effect auf Hero Ball ----
