@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SoccR – Finde dein nächstes Spiel</title>
+<meta name="description" content="SoccR verbindet dich mit Spielern in deiner Nähe, trackt deine Stats live und macht aus jedem Feierabend ein Match.">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+<!-- ============================================================
+     STICKY NAVIGATION
+     ============================================================ -->
+<nav class="quicknav" aria-label="Feature-Navigation">
+  <a class="brand" href="#top">
+    <img src="assets/logo.png" alt="" width="34" height="34" class="brand__icon">
+    <span class="brand__name">SoccR</span>
+  </a>
+
+  <ul class="quicknav__list">
+    <li>
+      <a href="#article1" data-target="article1" class="quicknav__link">
+        <span class="phone-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="6" y="2" width="12" height="20" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 6h3.5M9 17h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="15.5" cy="9" r="1.6" fill="currentColor"/></svg>
+        </span>
+        <span class="quicknav__label">Stats</span>
+      </a>
+    </li>
+    <li>
+      <a href="#article2" data-target="article2" class="quicknav__link">
+        <span class="phone-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="6" y="2" width="12" height="20" rx="3" stroke="currentColor" stroke-width="1.6"/><circle cx="11.3" cy="9.3" r="1.7" stroke="currentColor" stroke-width="1.5"/><path d="M8.4 14.4c.6-1.3 1.6-1.9 2.9-1.9s2.3.6 2.9 1.9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="15.6" cy="10.3" r="1.2" stroke="currentColor" stroke-width="1.3"/></svg>
+        </span>
+        <span class="quicknav__label">Freunde</span>
+      </a>
+    </li>
+    <li>
+      <a href="#article3" data-target="article3" class="quicknav__link">
+        <span class="phone-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="6" y="2" width="12" height="20" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M12 8.2c-1.5 0-2.7 1.1-2.7 2.6 0 1.9 2.7 4.6 2.7 4.6s2.7-2.7 2.7-4.6c0-1.5-1.2-2.6-2.7-2.6Z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="10.7" r=".7" fill="currentColor"/></svg>
+        </span>
+        <span class="quicknav__label">Entdecken</span>
+      </a>
+    </li>
+    <li>
+      <a href="#article4" data-target="article4" class="quicknav__link">
+        <span class="phone-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="6" y="2" width="12" height="20" rx="3" stroke="currentColor" stroke-width="1.6"/><circle cx="10" cy="9" r="1.5" stroke="currentColor" stroke-width="1.4"/><circle cx="14.2" cy="9.6" r="1.2" stroke="currentColor" stroke-width="1.2"/><path d="M7.4 14.3c.5-1.1 1.4-1.6 2.6-1.6s2.1.5 2.6 1.6M13.3 14c.4-.8 1.1-1.2 2-1.2s1.6.4 2 1.2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        </span>
+        <span class="quicknav__label">Teams</span>
+      </a>
+    </li>
+    <li>
+      <a href="#article5" data-target="article5" class="quicknav__link">
+        <span class="phone-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="6" y="2" width="12" height="20" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M8.5 15.5 10 12l1.5 2 1.5-3.5 2 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span class="quicknav__label">TrackR</span>
+      </a>
+    </li>
+  </ul>
+
+  <a class="quicknav__cta" href="https://apps.apple.com/de/app/soccr-planer/id6761933610" target="_blank" rel="noopener">
+    App laden
+  </a>
+
+  <button class="navburger" id="navburger" aria-expanded="false" aria-controls="quicknav-list" aria-label="Menü öffnen">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<header class="hero" id="top">
+  <div class="hero__glow" aria-hidden="true"></div>
+
+  <img src="assets/ball-freigestellt-large.png"
+       srcset="assets/ball-freigestellt-small.png 160w, assets/ball-freigestellt-medium.png 320w, assets/ball-freigestellt-large.png 800w"
+       sizes="(max-width: 720px) 70px, (max-width: 1100px) 100px, 140px"
+       alt="" class="hero__ball" aria-hidden="true">
+
+  <div class="hero__content">
+    <p class="eyebrow">Kick-off in deiner Stadt</p>
+    <h1 class="hero__title">SoccR</h1>
+    <p class="hero__tagline">Finde Mitspieler, trag dich in Kicks ein und track jedes Match wie ein Profi – SoccR ist dein Anpfiff für spontanen Fußball.</p>
+
+    <div class="hero__actions">
+      <a class="btn btn--primary" href="https://apps.apple.com/de/app/soccr-planer/id6761933610" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M16.7 12.4c0-2.5 2-3.7 2.1-3.8-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.6.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1.9-3.9 2.4-1.7 2.9-.4 7.3 1.2 9.6.8 1.2 1.7 2.5 3 2.4 1.2 0 1.6-.8 3.1-.8s1.8.8 3.1.7c1.3 0 2.1-1.1 2.9-2.3.9-1.3 1.3-2.6 1.3-2.7-.1 0-2.4-.9-2.5-3.7ZM14.4 5c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.8 1.4-.6.7-1.2 1.9-1 2.9 1 .1 2.1-.5 2.8-1.3Z"/></svg>
+        SoccR im App Store
+      </a>
+      <a class="btn btn--ghost" href="#article1">
+        Features entdecken
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden="true"><path d="M12 4v16M6 14l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+    <div class="hero__social">
+      <a href="https://www.instagram.com/soccrapp/" target="_blank" rel="noopener" aria-label="SoccR auf Instagram (@soccrapp)">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.5" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.7"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor"/></svg>
+        <span>@soccrapp</span>
+      </a>
+    </div>
+  </div>
+
+  <svg class="hero__pitch" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,64 C240,120 480,0 720,40 C960,80 1200,10 1440,60 L1440,120 L0,120 Z" fill="currentColor"/>
+  </svg>
+</header>
+
+<!-- ============================================================
+     HAUPTBEREICH MIT SCROLL-SNAP – 5 FEATURE-ARTIKEL
+     ============================================================ -->
+<main id="main">
+
+  <article id="article1" class="feature feature--a">
+    <div class="feature__media phone-stage">
+      <img
+        src="assets/phone-profil.png"
+        alt="SoccR Profil-Bildschirm: Nutzer Max M. mit SP-Punktestand 10, 2 Erfolgen und 5 gespielten Kicks"
+        class="phone-shot">
+    </div>
+    <div class="feature__text">
+      <span class="feature__eyebrow">Profil &amp; SP-Punkte</span>
+      <h2>Tracke deine Stats</h2>
+      <p class="feature__lead">Wie gut bist du wirklich?</p>
+      <p>Jedes Match, jeder Sieg, jede Serie fließt in dein SP-Punktekonto. SoccR sammelt deine Auftritte automatisch und zeigt dir schwarz auf grün, wie sich dein Spiel über die Saison entwickelt – inklusive Abzeichen für besondere Erfolge.</p>
+      <ul class="feature__stats" aria-label="Beispielhafte Profilwerte">
+        <li><span class="stat-num" data-count-to="10">0</span><span class="stat-label">SP-Punkte</span></li>
+        <li><span class="stat-num" data-count-to="2">0</span><span class="stat-label">Erfolge</span></li>
+        <li><span class="stat-num" data-count-to="5">0</span><span class="stat-label">Kicks</span></li>
+      </ul>
+    </div>
+  </article>
+
+  <article id="article2" class="feature feature--b feature--reverse">
+    <div class="feature__media phone-stage">
+      <img
+        src="assets/phone-freunde.png"
+        alt="SoccR Freunde-Liste mit Rangliste: Moritz, Jihed, Oliver, Samuel, Manuel und Musti mit ihren jeweiligen Punktzahlen"
+        class="phone-shot">
+    </div>
+    <div class="feature__text">
+      <span class="feature__eyebrow">Freunde &amp; Rangliste</span>
+      <h2>Wer ist der Beste?</h2>
+      <p class="feature__lead">Vergleiche dich mit Freunden.</p>
+      <p>Fordere deine Crew heraus: Die Freundesliste zeigt live, wer gerade oben steht. Ob Nachbarschafts-Bragging-Rights oder ernsthafte Tabellenführung – SoccR macht aus jedem Kick auch ein kleines Duell außerhalb des Platzes.</p>
+    </div>
+  </article>
+
+  <article id="article3" class="feature feature--c">
+    <div class="feature__media phone-stage">
+      <img
+        src="assets/phone-entdecken.png"
+        alt="SoccR Entdecken-Bildschirm mit Kicks in der Nähe: Sonntags-Kick, Training und Kicken, jeweils mit Datum und Entfernung"
+        class="phone-shot">
+    </div>
+    <div class="feature__text">
+      <span class="feature__eyebrow">Entdecken</span>
+      <h2>Spiele in deiner Nähe</h2>
+      <p class="feature__lead">Tritt anderen bei.</p>
+      <p>Kein festes Team, trotzdem Bock auf ein Match? Im Entdecken-Bereich findest du offene Kicks in deiner Umgebung – mit Uhrzeit, Distanz und einem Klick zum Mitspielen.</p>
+    </div>
+  </article>
+
+  <article id="article4" class="feature feature--d feature--reverse">
+    <div class="feature__media phone-stage">
+      <img
+        src="assets/phone-teams.png"
+        alt="SoccR Teams-Übersicht mit den Gruppen SonntagsKick, FußballFreunde und Baller SV inklusive Mitgliederzahl"
+        class="phone-shot">
+    </div>
+    <div class="feature__text">
+      <span class="feature__eyebrow">Teams</span>
+      <h2>Erstelle Teamgruppen</h2>
+      <p class="feature__lead">Gemeinsam stärker.</p>
+      <p>Gründe dein eigenes Team, lade Mitspieler ein und plant eure nächsten Kicks an einem Ort. SoccR hält euren Kader, eure Termine und eure Ergebnisse zusammen – egal ob feste Mannschaft oder lockere Truppe.</p>
+    </div>
+  </article>
+
+  <article id="article5" class="feature feature--e feature--trackr">
+    <div class="feature__media phone-stage">
+      <img
+        src="assets/phone-trackr.png"
+        alt="TrackR-Bildschirm einer Session vom heutigen Tag: 11,4 km zurückgelegte Strecke, 33,6 km/h Höchstgeschwindigkeit, 980 kcal Kalorienverbrauch und 23 Sprints. Darunter eine Heatmap des Spielfelds, auf der die Aktivität als rote und gelbe Zonen im Mittelfeld und in beiden Strafräumen dargestellt ist – die höchste Intensität zeigt sich im Zentrum des Feldes."
+        class="phone-shot">
+    </div>
+    <div class="feature__text">
+      <span class="feature__eyebrow">TrackR</span>
+      <h2>Deine Heatmap</h2>
+      <p class="feature__lead">Tracke Live-Spieldaten.</p>
+      <p>TrackR misst Laufstrecke, Höchstgeschwindigkeit und Sprints in Echtzeit und übersetzt sie in eine Heatmap deines Spiels: Du siehst genau, wo auf dem Feld du am aktivsten warst. Tipp auf eine Kategorie, um zu sehen, was genau gemessen wird.</p>
+
+      <!-- Aufklappbare Stat-Kategorien statt statischem Screenshot -->
+      <div class="stat-accordion" id="stat-accordion">
+        <div class="stat-item">
+          <button class="stat-item__trigger" aria-expanded="false" aria-controls="stat-panel-1" id="stat-btn-1">
+            <span class="stat-item__icon stat-item__icon--blue" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M9 4 4 6v14l5-2 6 2 5-2V4l-5 2-6-2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 4v14M15 6v14" stroke="currentColor" stroke-width="1.6"/></svg>
+            </span>
+            <span class="stat-item__copy">
+              <span class="stat-item__title">Live-Heatmap</span>
+              <span class="stat-item__sub">Sieh wo du auf dem Feld am aktivsten warst</span>
+            </span>
+            <svg class="stat-item__chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="stat-item__panel" id="stat-panel-1" role="region" aria-labelledby="stat-btn-1">
+            <div class="heatmap-demo" aria-hidden="true">
+              <span class="heatmap-demo__zone heatmap-demo__zone--hot"></span>
+              <span class="heatmap-demo__zone heatmap-demo__zone--warm"></span>
+              <span class="heatmap-demo__zone heatmap-demo__zone--warm2"></span>
+              <span class="heatmap-demo__zone heatmap-demo__zone--cool"></span>
+            </div>
+            <p>Jede Bewegung auf dem Platz wird erfasst und farblich verdichtet: Rot &amp; Gelb zeigen deine Hotspots, Grün die ruhigeren Zonen. So siehst du auf einen Blick, ob du eher im Zentrum oder auf den Außenbahnen unterwegs warst.</p>
+          </div>
+        </div>
+
+        <div class="stat-item">
+          <button class="stat-item__trigger" aria-expanded="false" aria-controls="stat-panel-2" id="stat-btn-2">
+            <span class="stat-item__icon stat-item__icon--red" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.2" stroke="currentColor" stroke-width="1.6"/><path d="M12 12 15.2 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="12" r="1.3" fill="currentColor"/></svg>
+            </span>
+            <span class="stat-item__copy">
+              <span class="stat-item__title">Geschwindigkeit &amp; Distanz</span>
+              <span class="stat-item__sub">Live-Tracking mit Höchstgeschwindigkeit</span>
+            </span>
+            <svg class="stat-item__chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="stat-item__panel" id="stat-panel-2" role="region" aria-labelledby="stat-btn-2">
+            <div class="mini-stats" aria-hidden="true">
+              <div class="mini-stats__cell"><span class="mini-stats__num">11,4</span><span class="mini-stats__unit">km Distanz</span></div>
+              <div class="mini-stats__cell"><span class="mini-stats__num">33,6</span><span class="mini-stats__unit">km/h Top-Speed</span></div>
+            </div>
+            <p>GPS-genaues Tracking zeigt dir gelaufene Strecke und Höchstgeschwindigkeit direkt nach dem Abpfiff – so vergleichst du jede Session mit deiner letzten.</p>
+          </div>
+        </div>
+
+        <div class="stat-item">
+          <button class="stat-item__trigger" aria-expanded="false" aria-controls="stat-panel-3" id="stat-btn-3">
+            <span class="stat-item__icon stat-item__icon--amber" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 3c1 2.5-1.5 3-1.5 5.2 0 1.2 1 2 2 2s2-1 2-2.3c1.8 1.3 3 3.5 3 5.8 0 3.5-2.7 6.3-6 6.3S5.5 17.2 5.5 13.7c0-3.6 2.7-6.4 4-8.4.8-1.2 1.7-1.6 2.5-2.3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="stat-item__copy">
+              <span class="stat-item__title">Kalorienverbrauch</span>
+              <span class="stat-item__sub">Berechnet aus Größe, Gewicht und Intensität</span>
+            </span>
+            <svg class="stat-item__chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="stat-item__panel" id="stat-panel-3" role="region" aria-labelledby="stat-btn-3">
+            <div class="mini-stats" aria-hidden="true">
+              <div class="mini-stats__cell"><span class="mini-stats__num">980</span><span class="mini-stats__unit">kcal verbrannt</span></div>
+              <div class="mini-stats__cell"><span class="mini-stats__num">23</span><span class="mini-stats__unit">Sprints</span></div>
+            </div>
+            <p>SoccR kombiniert deine Bewegungsintensität mit Größe und Gewicht zu einer realistischen Kalorienschätzung für jede Session.</p>
+          </div>
+        </div>
+
+        <div class="stat-item">
+          <button class="stat-item__trigger" aria-expanded="false" aria-controls="stat-panel-4" id="stat-btn-4">
+            <span class="stat-item__icon stat-item__icon--gold" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M8 4h8v4a4 4 0 0 1-8 0V4Z" stroke="currentColor" stroke-width="1.5"/><path d="M8 5H5.5A2.5 2.5 0 0 0 6 9.9M16 5h2.5A2.5 2.5 0 0 1 18 9.9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M12 12v3M9 19h6M10 19v-2.3M14 19v-2.3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+            <span class="stat-item__copy">
+              <span class="stat-item__title">Personal Records</span>
+              <span class="stat-item__sub">Werde besser mit jedem Track</span>
+            </span>
+            <svg class="stat-item__chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="stat-item__panel" id="stat-panel-4" role="region" aria-labelledby="stat-btn-4">
+            <p>Jede neue Bestleistung bei Distanz, Tempo oder Sprints wird automatisch festgehalten – SoccR erinnert dich, sobald du einen alten Rekord knackst.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+</main>
+
+<!-- ============================================================
+     SOCCR PRO VS. GRATIS
+     ============================================================ -->
+<section class="pro" id="pro" aria-labelledby="pro-heading">
+  <div class="pro__intro">
+    <span class="feature__eyebrow">SoccR Pro</span>
+    <h2 id="pro-heading">Schon gratis stark. Mit Pro komplett.</h2>
+    <p>Teams, Entdecken, Freunde und Ranglisten spielst du komplett kostenlos. Mit SoccR Pro schaltest du zusätzlich TrackR frei und trackst deine Sessions wie ein Profi.</p>
+
+    <!-- Interaktiver Umschalter: hebt Gratis bzw. Pro in Karten & Tabelle hervor -->
+    <div class="pro__toggle" role="group" aria-label="Plan auswählen">
+      <button type="button" class="pro__toggle-btn is-active" data-plan="free" aria-pressed="true">Gratis</button>
+      <button type="button" class="pro__toggle-btn" data-plan="pro" aria-pressed="false">SoccR Pro</button>
+      <span class="pro__toggle-glider" aria-hidden="true"></span>
+    </div>
+  </div>
+
+  <div class="pro__split" id="pro-split">
+    <div class="pro__side pro__side--free">
+      <h3>Gratis</h3>
+      <p class="pro__price">0&nbsp;€ <span>für immer</span></p>
+      <ul class="pro__list">
+        <li>Teams &amp; Teamgruppen</li>
+        <li>Entdecken &amp; öffentliche Kicks</li>
+        <li>Freunde &amp; Rangliste</li>
+        <li>SP-Punkte &amp; Erfolge</li>
+      </ul>
+    </div>
+
+    <div class="pro__side pro__side--pro">
+      <span class="pro__badge">Bestes Angebot</span>
+      <h3>SoccR Pro</h3>
+      <p class="pro__price">19,99&nbsp;€ <span>pro Jahr · spare 44&nbsp;%</span></p>
+      <ul class="pro__list">
+        <li>Alles aus Gratis</li>
+        <li>Live-Heatmap</li>
+        <li>Intensitätszonen</li>
+        <li>Sprint-Analyse</li>
+        <li>Personal Records</li>
+      </ul>
+      <a class="btn btn--primary btn--small" href="https://apps.apple.com/de/app/soccr-planer/id6761933610" target="_blank" rel="noopener">1 Woche gratis testen</a>
+    </div>
+  </div>
+
+  <div class="pro__table-wrap" id="pro-table-wrap">
+    <table class="pro__table">
+      <caption>TrackR-Funktionen im Vergleich zwischen Gratis und SoccR Pro</caption>
+      <thead>
+        <tr>
+          <th scope="col">Funktion</th>
+          <th scope="col" data-col="free">Gratis</th>
+          <th scope="col" data-col="pro">SoccR Pro</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Live-Heatmap</th>
+          <td data-col="free"><span class="dot dot--off" aria-label="nicht enthalten"></span></td>
+          <td data-col="pro"><span class="dot dot--on" aria-label="enthalten"></span></td>
+        </tr>
+        <tr>
+          <th scope="row">Intensitätszonen</th>
+          <td data-col="free"><span class="dot dot--off" aria-label="nicht enthalten"></span></td>
+          <td data-col="pro"><span class="dot dot--on" aria-label="enthalten"></span></td>
+        </tr>
+        <tr>
+          <th scope="row">Sprint-Analyse</th>
+          <td data-col="free"><span class="dot dot--off" aria-label="nicht enthalten"></span></td>
+          <td data-col="pro"><span class="dot dot--on" aria-label="enthalten"></span></td>
+        </tr>
+        <tr>
+          <th scope="row">Personal Records</th>
+          <td data-col="free"><span class="dot dot--off" aria-label="nicht enthalten"></span></td>
+          <td data-col="pro"><span class="dot dot--on" aria-label="enthalten"></span></td>
+        </tr>
+        <tr>
+          <th scope="row">Teams &amp; Entdecken</th>
+          <td data-col="free"><span class="dot dot--on" aria-label="enthalten"></span></td>
+          <td data-col="pro"><span class="dot dot--on" aria-label="enthalten"></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============================================================
+     CALL TO ACTION
+     ============================================================ -->
+<section class="cta">
+  <img src="assets/ball-freigestellt-large.png" alt="" class="cta__ball" aria-hidden="true">
+  <h2>Anpfiff in 30 Sekunden.</h2>
+  <p>Lade SoccR herunter, trag dich in einen Kick ein oder gründe dein eigenes Team – dein nächstes Match wartet schon.</p>
+  <a class="btn btn--primary btn--large" href="https://apps.apple.com/de/app/soccr-planer/id6761933610" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M16.7 12.4c0-2.5 2-3.7 2.1-3.8-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.6.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1.9-3.9 2.4-1.7 2.9-.4 7.3 1.2 9.6.8 1.2 1.7 2.5 3 2.4 1.2 0 1.6-.8 3.1-.8s1.8.8 3.1.7c1.3 0 2.1-1.1 2.9-2.3.9-1.3 1.3-2.6 1.3-2.7-.1 0-2.4-.9-2.5-3.7ZM14.4 5c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.8 1.4-.6.7-1.2 1.9-1 2.9 1 .1 2.1-.5 2.8-1.3Z"/></svg>
+    Jetzt kostenlos SoccR laden
+  </a>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="site-footer">
+  <div class="site-footer__brand">
+    <img src="assets/logo.png" alt="SoccR Logo" width="36" height="36">
+    <span>SoccR</span>
+  </div>
+  <p>SoccR Planer · Organizer · von Louis Reinecke</p>
+  <div class="site-footer__links">
+    <a href="https://apps.apple.com/de/app/soccr-planer/id6761933610" target="_blank" rel="noopener">App Store</a>
+    <a href="https://www.instagram.com/soccrapp/" target="_blank" rel="noopener" aria-label="SoccR auf Instagram">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.5" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.7"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor"/></svg>
+      @soccrapp
+    </a>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
