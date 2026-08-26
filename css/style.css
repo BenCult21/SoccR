@@ -418,44 +418,24 @@ main {
 .feature--e { background: radial-gradient(120% 100% at 50% 0%, #301c10 0%, var(--bg-soft) 60%); }
 
 .feature__media {
-  position: relative;
   display: flex;
   justify-content: center;
-  overflow: visible;
 }
 
 /* Premium Phone Image – Clean Look */
 .phone-shot {
   width: min(76%, 280px);
   height: auto;
-  filter: none;
-  transition: filter 0.4s ease, transform 0.4s cubic-bezier(0.22, 1.4, 0.36, 1);
+  transition: transform 0.4s cubic-bezier(0.22, 1.4, 0.36, 1);
   transform: translateY(0) scale(1);
-  will-change: transform, filter;
 }
 
 /* Gloss Overlay – Apple-Style */
 .feature__media::before {
   content: "";
-  position: absolute;
-  top: 5%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 85%;
-  max-width: 260px;
-  height: 35%;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.22) 0%,
-    rgba(255, 255, 255, 0.08) 40%,
-    transparent 100%
-  );
-  border-radius: 32px;
+  position: fixed;
   pointer-events: none;
-  opacity: 0.7;
-  z-index: 2;
-  box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.1);
-  animation: glossPulse 4s ease-in-out infinite;
+  display: none;
 }
 
 @keyframes glossPulse {
