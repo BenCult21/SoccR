@@ -371,9 +371,6 @@ button:focus-visible {
    und thematisch angepasst)
    ============================================================ */
 main {
-  scroll-snap-type: y proximity;
-  overflow-y: auto;
-  height: 100vh;
   scroll-behavior: smooth;
 }
 
@@ -388,13 +385,11 @@ main {
 
 .feature {
   position: relative;
-  min-height: 100vh;
   display: grid;
   grid-template-columns: 0.85fr 1fr;
   align-items: center;
   gap: clamp(2rem, 6vw, 5rem);
-  padding: clamp(2rem, 6vw, 5rem) clamp(1.5rem, 8vw, 7rem);
-  scroll-snap-align: start;
+  padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 8vw, 7rem);
   background: var(--bg-soft);
   overflow: hidden;
 
