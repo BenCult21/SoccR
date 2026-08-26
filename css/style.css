@@ -424,12 +424,11 @@ main {
   overflow: visible;
 }
 
-/* Premium Phone Image – Gloss & Shadow Effect */
+/* Premium Phone Image – Clean Look */
 .phone-shot {
   width: min(76%, 280px);
   height: auto;
-  filter: drop-shadow(0 40px 80px rgba(0, 0, 0, 0.7))
-          drop-shadow(0 0 50px rgba(51, 225, 122, 0.05));
+  filter: none;
   transition: filter 0.4s ease, transform 0.4s cubic-bezier(0.22, 1.4, 0.36, 1);
   transform: translateY(0) scale(1);
   will-change: transform, filter;
@@ -484,10 +483,8 @@ main {
   animation: phoneFloat 5s ease-in-out infinite;
 }
 
-/* Hover Effect – Enhanced Glow */
+/* Hover Effect – Lift Only */
 .feature__media:hover .phone-shot {
-  filter: drop-shadow(0 50px 100px rgba(0, 0, 0, 0.8))
-          drop-shadow(0 0 80px rgba(51, 225, 122, 0.2));
   transform: translateY(-8px) scale(1.03);
 }
 
