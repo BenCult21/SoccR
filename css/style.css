@@ -1,23 +1,18 @@
 /* ============================================================
-   SoccR – Stylesheet
-   Konzept: dunkler "Nacht-Rasen"-Hintergrund (wie im App-UI),
-   Signalgrün als Primärfarbe (Anstoß/aktiver Zustand),
-   Amber/Gold als Sekundärfarbe (SoccR Pro / Erfolge).
-   Display-Schrift Poppins (rund, kräftig – nah am Logo-Schriftzug),
-   Inter als Lesetext, Space Mono für Stat-Zahlen ("Scoreboard").
+   SoccR – Premium Stylesheet
    ============================================================ */
 
-/* ---------- Design Tokens ---------- */
 :root {
   --bg: #070f0b;
   --bg-soft: #0c1712;
   --surface: #101d16;
   --surface-2: #16251c;
-  --line: rgba(255, 255, 255, 0.09);
+  --line: rgba(255, 255, 255, 0.12);
 
   --green: #33e17a;
   --green-strong: #1fbf63;
   --green-deep: #0f5a34;
+  --green-light: #5eeb94;
   --amber: #ffbe45;
   --amber-deep: #b5791a;
 
@@ -34,6 +29,7 @@
   --font-mono: "Space Mono", monospace;
 
   --ease-kick: cubic-bezier(0.22, 1.4, 0.36, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ---------- Reset & Basics ---------- */
@@ -116,39 +112,50 @@ button:focus-visible {
 .btn--primary {
   background: linear-gradient(135deg, var(--green) 0%, var(--green-strong) 100%);
   color: #062814;
-  box-shadow: 0 8px 24px -8px rgba(51, 225, 122, 0.55);
+  box-shadow: 0 10px 30px -5px rgba(51, 225, 122, 0.6);
   position: relative;
   overflow: hidden;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  transition: all 0.4s var(--ease-kick);
 }
+
 .btn--primary::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
   opacity: 0;
-  animation: btnPulse 2s ease-in-out infinite;
+  animation: btnGlow 2.5s ease-in-out infinite;
   pointer-events: none;
+  z-index: 1;
 }
-@keyframes btnPulse {
+
+.btn--primary span, .btn--primary svg {
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes btnGlow {
   0%, 100% {
     opacity: 0;
     transform: scale(0.8);
   }
   50% {
-    opacity: 0.4;
-    transform: scale(1.1);
+    opacity: 0.5;
+    transform: scale(1.15);
   }
 }
+
 .btn--primary:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 14px 30px -8px rgba(51, 225, 122, 0.65),
-              0 0 30px rgba(51, 225, 122, 0.4);
-  animation: btnBounce 0.6s cubic-bezier(0.22, 1.4, 0.36, 1);
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 20px 50px -5px rgba(51, 225, 122, 0.8),
+              0 0 40px rgba(51, 225, 122, 0.5),
+              inset 0 0 20px rgba(255, 255, 255, 0.2);
 }
-@keyframes btnBounce {
-  0% { transform: translateY(-3px) scale(1.02); }
-  50% { transform: translateY(-5px) scale(1.03); }
-  100% { transform: translateY(-3px) scale(1.02); }
+
+.btn--primary:active {
+  transform: translateY(-2px) scale(1.02);
 }
 .btn--ghost {
   background: rgba(255, 255, 255, 0.06);
@@ -333,10 +340,22 @@ button:focus-visible {
   inset: -20% -10% auto -10%;
   height: 70%;
   background:
-    radial-gradient(60% 60% at 30% 20%, rgba(51, 225, 122, 0.25), transparent 70%),
-    radial-gradient(50% 50% at 80% 10%, rgba(255, 190, 69, 0.14), transparent 70%);
-  filter: blur(10px);
+    radial-gradient(60% 60% at 30% 20%, rgba(51, 225, 122, 0.4), transparent 70%),
+    radial-gradient(50% 50% at 80% 10%, rgba(255, 190, 69, 0.25), transparent 70%);
+  filter: blur(20px);
   z-index: -2;
+  animation: glowPulse 8s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    opacity: 0.8;
+    filter: blur(20px) brightness(1);
+  }
+  50% {
+    opacity: 1;
+    filter: blur(25px) brightness(1.2);
+  }
 }
 
 .hero__ball {
@@ -439,10 +458,25 @@ main {
   padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 8vw, 7rem);
   background: var(--bg-soft);
   overflow: hidden;
+  border-bottom: 1px solid var(--line);
+  transition: background 0.6s var(--ease-smooth);
 
-  animation: revealColor linear both, hideColor linear both;
-  animation-timeline: view();
-  animation-range: entry 88% entry 100%, exit 0% exit 100%;
+  animation: revealColor linear both, hideColor linear both, featureFadeIn linear both;
+  animation-timeline: view(), view(), view();
+  animation-range: entry 88% entry 100%, exit 0% exit 100%, entry 60% entry 100%;
+}
+
+@keyframes featureFadeIn {
+  from {
+    opacity: 0.7;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.feature:hover {
+  background: linear-gradient(135deg, rgba(51, 225, 122, 0.05) 0%, rgba(255, 190, 69, 0.03) 100%);
 }
 
 @supports not (animation-timeline: view()) {
@@ -464,30 +498,46 @@ main {
   justify-content: center;
 }
 
-/* Premium Phone Image – Clean Look */
+/* Premium Phone Image – Enhanced */
 .phone-shot {
-  width: min(76%, 280px);
+  width: min(76%, 290px);
   height: auto;
-  transition: transform 0.4s cubic-bezier(0.22, 1.4, 0.36, 1);
+  transition: transform 0.5s var(--ease-kick), filter 0.5s var(--ease-smooth);
   transform: translateY(0) scale(1);
+  filter: brightness(1) saturate(1.1);
+  position: relative;
+  z-index: 1;
 }
 
-/* Gloss Overlay – Apple-Style */
+.feature__media:hover .phone-shot {
+  transform: translateY(-20px) scale(1.05) perspective(1000px) rotateX(5deg);
+  filter: brightness(1.15) saturate(1.3) drop-shadow(0 30px 60px rgba(51, 225, 122, 0.3));
+}
+
+/* Gloss Overlay */
 .feature__media::before {
   content: "";
-  position: fixed;
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 250px;
+  height: 30%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 100%);
+  border-radius: 30px;
   pointer-events: none;
-  display: none;
+  opacity: 0.8;
+  z-index: 2;
+  animation: glossFlare 3s ease-in-out infinite;
 }
 
-@keyframes glossPulse {
+@keyframes glossFlare {
   0%, 100% {
-    opacity: 0.65;
-    box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.1);
+    opacity: 0.6;
   }
   50% {
-    opacity: 0.85;
-    box-shadow: inset 0 1px 6px rgba(255, 255, 255, 0.18);
+    opacity: 1;
   }
 }
 
