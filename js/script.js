@@ -127,4 +127,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     counters.forEach((counter) => counterObserver.observe(counter));
   }
+
+  // ---- 7) Parallax Effect auf Hero Ball ----
+  const heroBall = document.querySelector(".hero__ball");
+  if (heroBall) {
+    window.addEventListener("scroll", () => {
+      const scrollY = window.scrollY;
+      const parallaxAmount = scrollY * 0.5;
+      heroBall.style.transform = `translateY(${parallaxAmount}px) rotate(${scrollY}deg)`;
+    }, { passive: true });
+  }
 });

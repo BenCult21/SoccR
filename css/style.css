@@ -117,10 +117,38 @@ button:focus-visible {
   background: linear-gradient(135deg, var(--green) 0%, var(--green-strong) 100%);
   color: #062814;
   box-shadow: 0 8px 24px -8px rgba(51, 225, 122, 0.55);
+  position: relative;
+  overflow: hidden;
+}
+.btn--primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  opacity: 0;
+  animation: btnPulse 2s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes btnPulse {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.1);
+  }
 }
 .btn--primary:hover {
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 14px 30px -8px rgba(51, 225, 122, 0.65);
+  box-shadow: 0 14px 30px -8px rgba(51, 225, 122, 0.65),
+              0 0 30px rgba(51, 225, 122, 0.4);
+  animation: btnBounce 0.6s cubic-bezier(0.22, 1.4, 0.36, 1);
+}
+@keyframes btnBounce {
+  0% { transform: translateY(-3px) scale(1.02); }
+  50% { transform: translateY(-5px) scale(1.03); }
+  100% { transform: translateY(-3px) scale(1.02); }
 }
 .btn--ghost {
   background: rgba(255, 255, 255, 0.06);
@@ -190,8 +218,26 @@ button:focus-visible {
   height: 26px;
   display: grid;
   place-items: center;
+  animation: iconFloat 3s ease-in-out infinite;
 }
-.phone-ico svg { width: 100%; height: 100%; }
+.phone-ico svg {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+@keyframes iconFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+.quicknav__link:hover .phone-ico svg,
+.quicknav__link:focus-visible .phone-ico svg,
+.quicknav__link.is-active .phone-ico svg {
+  transform: scale(1.15) rotate(5deg);
+}
 
 .quicknav__label {
   font-family: var(--font-mono);
@@ -301,6 +347,7 @@ button:focus-visible {
   z-index: -1;
   animation: spinBall 14s linear infinite, floatBall 6s ease-in-out infinite;
   opacity: 0.9;
+  will-change: transform;
 }
 
 @keyframes spinBall {
@@ -471,6 +518,40 @@ main {
   text-transform: uppercase;
   color: var(--green);
   margin-bottom: 0.7rem;
+}
+
+.feature__text {
+  animation: textFadeIn linear both;
+  animation-timeline: view();
+  animation-range: entry 60% entry 100%;
+}
+
+.feature--reverse .feature__text {
+  animation: textFadeInRight linear both;
+  animation-timeline: view();
+  animation-range: entry 60% entry 100%;
+}
+
+@keyframes textFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes textFadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .feature h2 {
@@ -851,7 +932,7 @@ main {
 .dot--off { background: var(--text-faint); opacity: 0.4; }
 
 /* ============================================================
-   CALL TO ACTION
+   CALL TO ACTION & PRO UPGRADE CTA
    ============================================================ */
 .cta {
   position: relative;
@@ -859,6 +940,45 @@ main {
   padding: clamp(4.5rem, 10vw, 8rem) 1.5rem;
   background: linear-gradient(180deg, var(--bg) 0%, #0b1a10 100%);
   overflow: hidden;
+}
+
+.pro-cta {
+  position: relative;
+  text-align: center;
+  padding: clamp(4rem, 8vw, 6rem) 1.5rem;
+  background: linear-gradient(135deg, rgba(51, 225, 122, 0.08) 0%, rgba(255, 190, 69, 0.05) 100%);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+  animation: proCtaSlideIn linear both;
+  animation-timeline: view();
+  animation-range: entry 50% entry 100%;
+}
+
+@keyframes proCtaSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pro-cta__content {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.pro-cta h2 {
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  margin: 0.8rem 0 1rem;
+}
+
+.pro-cta p {
+  color: var(--text-dim);
+  margin-bottom: 2rem;
 }
 .cta h2 {
   font-size: clamp(2rem, 4.5vw, 3.2rem);
@@ -946,11 +1066,26 @@ main {
     gap: 0.1rem;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.35s var(--ease-kick);
+    transition: max-height 0.4s var(--ease-kick), opacity 0.4s ease;
+    opacity: 0;
+    will-change: max-height, opacity;
   }
   .quicknav.is-open .quicknav__list {
     max-height: 200px;
     margin-top: 0.6rem;
+    opacity: 1;
+    animation: menuSlideDown 0.4s var(--ease-kick) forwards;
+  }
+
+  @keyframes menuSlideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
   .quicknav__label { font-size: 0.55rem; }
   .quicknav__cta { display: none; }
