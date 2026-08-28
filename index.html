@@ -124,27 +124,35 @@
   <article id="article1" class="feature feature--a">
     <div class="feature__media">
       <div class="ui-mockup ui-mockup--profile">
-        <div class="ui-header">
-          <div class="ui-status"></div>
-          <div class="ui-status"></div>
+        <div class="profile-card">
+          <div class="profile-avatar">⚡</div>
+          <h3 class="profile-name">Max Berger</h3>
+          <div class="profile-badges">
+            <span class="badge badge--defender">Verteidiger</span>
+            <span class="badge badge--right">Rechts</span>
+          </div>
+          <div class="profile-social">📷 @maxberger</div>
         </div>
-        <div class="ui-content">
-          <div class="ui-avatar"></div>
-          <h4 class="ui-name">Max M.</h4>
-          <p class="ui-subtitle">Level 12 · 450 Punkte</p>
-          <div class="ui-stats">
-            <div class="ui-stat">
-              <span class="ui-value" data-animate="10">0</span>
-              <span class="ui-unit">SP</span>
-            </div>
-            <div class="ui-stat">
-              <span class="ui-value" data-animate="2">0</span>
-              <span class="ui-unit">Erfolge</span>
-            </div>
-            <div class="ui-stat">
-              <span class="ui-value" data-animate="5">0</span>
-              <span class="ui-unit">Kicks</span>
-            </div>
+        <div class="profile-stats">
+          <div class="stat-box">
+            <div class="stat-icon">⚽</div>
+            <div class="stat-number" data-animate="87">0</div>
+            <div class="stat-label">Spiele</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-icon">🏆</div>
+            <div class="stat-number" data-animate="51">0</div>
+            <div class="stat-label">Siege</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-icon">⚽</div>
+            <div class="stat-number" data-animate="34">0</div>
+            <div class="stat-label">Tore</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-icon">⭐</div>
+            <div class="stat-number" data-animate="12">0</div>
+            <div class="stat-label">MVPs</div>
           </div>
         </div>
       </div>
@@ -165,29 +173,37 @@
   <article id="article2" class="feature feature--b feature--reverse">
     <div class="feature__media">
       <div class="ui-mockup ui-mockup--leaderboard">
-        <div class="ui-header">
-          <div class="ui-title">Rangliste</div>
+        <div class="leaderboard-toggle">
+          <button class="toggle-btn active">🏆 Rangliste</button>
+          <button class="toggle-btn">💬 Chats</button>
         </div>
-        <div class="ui-content">
-          <div class="ui-rank">
-            <span class="ui-rank-num">1</span>
-            <span class="ui-rank-name">Moritz</span>
-            <span class="ui-rank-score">850</span>
+        <div class="leaderboard-list">
+          <div class="rank-item">
+            <div class="rank-badge rank-1">1</div>
+            <div class="rank-avatar rank-avatar-1">🔥</div>
+            <div class="rank-info">
+              <div class="rank-name">Jonas Kraft</div>
+              <div class="rank-stats">⚽ 61 🏆 58 ⭐ 19</div>
+            </div>
+            <div class="rank-score" data-animate="2425">0</div>
           </div>
-          <div class="ui-rank">
-            <span class="ui-rank-num">2</span>
-            <span class="ui-rank-name">Jihed</span>
-            <span class="ui-rank-score">728</span>
+          <div class="rank-item">
+            <div class="rank-badge rank-2">2</div>
+            <div class="rank-avatar rank-avatar-2">⚡</div>
+            <div class="rank-info">
+              <div class="rank-name">Max Berger</div>
+              <div class="rank-stats">⚽ 34 🏆 51 ⭐ 12</div>
+            </div>
+            <div class="rank-score" data-animate="1840">0</div>
           </div>
-          <div class="ui-rank">
-            <span class="ui-rank-num">3</span>
-            <span class="ui-rank-name">Oliver</span>
-            <span class="ui-rank-score">645</span>
-          </div>
-          <div class="ui-rank">
-            <span class="ui-rank-num">4</span>
-            <span class="ui-rank-name">Samuel</span>
-            <span class="ui-rank-score">512</span>
+          <div class="rank-item">
+            <div class="rank-badge rank-3">3</div>
+            <div class="rank-avatar rank-avatar-3">👑</div>
+            <div class="rank-info">
+              <div class="rank-name">Leon Hartmann</div>
+              <div class="rank-stats">⚽ 3 🏆 44 ⭐ 14</div>
+            </div>
+            <div class="rank-score" data-animate="1420">0</div>
           </div>
         </div>
       </div>
@@ -236,30 +252,44 @@
   <article id="article4" class="feature feature--d feature--reverse">
     <div class="feature__media">
       <div class="ui-mockup ui-mockup--teams">
-        <div class="ui-header">
-          <div class="ui-title">Teams</div>
+        <div class="teams-stats">
+          <div class="team-stat-card">
+            <div class="stat-big-num">3</div>
+            <div class="stat-big-label">Teams</div>
+          </div>
+          <div class="team-stat-card">
+            <div class="stat-big-num">73</div>
+            <div class="stat-big-label">Mitspieler</div>
+          </div>
+          <div class="team-stat-card">
+            <div class="stat-big-num">3</div>
+            <div class="stat-big-label">Öffentlich</div>
+          </div>
         </div>
-        <div class="ui-content">
-          <div class="ui-team">
-            <div class="ui-team-icon">⚽</div>
-            <div class="ui-team-info">
-              <div class="ui-team-name">SonntagsKick</div>
-              <div class="ui-team-members">12 Mitglieder</div>
+        <div class="teams-list">
+          <div class="team-item">
+            <div class="team-avatar avatar-d">D</div>
+            <div class="team-info">
+              <div class="team-name">Dienstagskick Kassel</div>
+              <div class="team-members">👥 24 Mitglieder</div>
             </div>
+            <div class="team-arrow">›</div>
           </div>
-          <div class="ui-team">
-            <div class="ui-team-icon">🏆</div>
-            <div class="ui-team-info">
-              <div class="ui-team-name">FußballFreunde</div>
-              <div class="ui-team-members">8 Mitglieder</div>
+          <div class="team-item">
+            <div class="team-avatar avatar-f">F</div>
+            <div class="team-info">
+              <div class="team-name">FC Kellerkinder</div>
+              <div class="team-members">👥 18 Mitglieder</div>
             </div>
+            <div class="team-arrow">›</div>
           </div>
-          <div class="ui-team">
-            <div class="ui-team-icon">⭐</div>
-            <div class="ui-team-info">
-              <div class="ui-team-name">Baller SV</div>
-              <div class="ui-team-members">15 Mitglieder</div>
+          <div class="team-item">
+            <div class="team-avatar avatar-u">U</div>
+            <div class="team-info">
+              <div class="team-name">Uni Liga Nord</div>
+              <div class="team-members">👥 31 Mitglieder</div>
             </div>
+            <div class="team-arrow">›</div>
           </div>
         </div>
       </div>
