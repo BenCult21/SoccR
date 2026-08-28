@@ -141,4 +141,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }, { passive: true });
   }
 
+  // ---- 9) iPhone Screenshot Hover - Trigger Stats Animation ----
+  const iPhoneFrames = document.querySelectorAll(".iphone-frame");
+  iPhoneFrames.forEach((frame) => {
+    frame.addEventListener("mouseenter", () => {
+      const article = frame.closest("article");
+      if (article) {
+        const counters = article.querySelectorAll("[data-animate]");
+        counters.forEach((counter) => {
+          if (!counter.dataset.animated) {
+            counter.dataset.animated = "true";
+            animateCount(counter);
+          }
+        });
+      }
+    });
+  });
+
 });
