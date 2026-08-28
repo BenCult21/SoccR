@@ -67,6 +67,17 @@
     </li>
   </ul>
 
+  <button id="theme-toggle" class="theme-toggle" aria-label="Design-Modus wechseln" title="Design-Modus wechseln">
+    <svg class="theme-toggle__icon theme-toggle__icon--light" viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true">
+      <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.6"/>
+      <path d="M12 2v4M12 18v4M21 12h-4M5 12H1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M18.6 5.4l-2.8 2.8M8.2 15.8l-2.8 2.8M18.6 18.6l-2.8-2.8M8.2 8.2l-2.8-2.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle__icon theme-toggle__icon--dark" viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true">
+      <path d="M21.64 11.05a7 7 0 0 0-9.7-9.7 10 10 0 1 0 9.7 9.7Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
   <a class="quicknav__cta" href="https://apps.apple.com/de/app/soccr-planer/id6761933610" target="_blank" rel="noopener">
     App laden
   </a>
@@ -91,6 +102,21 @@
     <p class="eyebrow">Kick-off in deiner Stadt</p>
     <h1 class="hero__title">SoccR</h1>
     <p class="hero__tagline">Finde Mitspieler, trag dich in Kicks ein und track jedes Match wie ein Profi – SoccR ist dein Anpfiff für spontanen Fußball.</p>
+
+    <div class="hero__stats">
+      <div class="hero__stat-item">
+        <div class="hero__stat-number"><span data-animate="50000">0</span>+</div>
+        <div class="hero__stat-label">Spieler</div>
+      </div>
+      <div class="hero__stat-item">
+        <div class="hero__stat-number"><span data-animate="73">0</span>M</div>
+        <div class="hero__stat-label">Spiele</div>
+      </div>
+      <div class="hero__stat-item">
+        <div class="hero__stat-number"><span data-animate="12">0</span>K+</div>
+        <div class="hero__stat-label">Kicks/Tag</div>
+      </div>
+    </div>
 
     <div class="hero__actions">
       <a class="btn btn--primary" href="https://apps.apple.com/de/app/soccr-planer/id6761933610" target="_blank" rel="noopener">
@@ -459,6 +485,12 @@
     </a>
   </div>
 </footer>
+
+<button id="scroll-to-top" class="scroll-to-top" aria-label="Nach oben scrollen" title="Nach oben scrollen">
+  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true">
+    <path d="M12 4v16M6 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
 
 <script src="js/script.js"></script>
 </body>

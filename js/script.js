@@ -10,6 +10,25 @@
 // ============================================================
 
 document.addEventListener("DOMContentLoaded", () => {
+  // ---- 0) Dark/Light Mode Setup ----
+  const themeToggle = document.getElementById("theme-toggle");
+  const htmlEl = document.documentElement;
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const savedTheme = localStorage.getItem("theme-mode");
+  const initialTheme = savedTheme || (prefersDark ? "dark" : "light");
+
+  if (initialTheme === "dark") {
+    htmlEl.classList.add("dark-mode");
+  }
+
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      htmlEl.classList.toggle("dark-mode");
+      const isDark = htmlEl.classList.contains("dark-mode");
+      localStorage.setItem("theme-mode", isDark ? "dark" : "light");
+    });
+  }
+
   const nav = document.querySelector(".quicknav");
   const burger = document.getElementById("navburger");
   const navLinks = document.querySelectorAll(".quicknav__link");
@@ -163,6 +182,60 @@ document.addEventListener("DOMContentLoaded", () => {
         article.scrollIntoView({ behavior: "smooth", block: "center" });
       }
     });
+
+    // ---- 11) 3D Subtle Rotatable iPhone ----
+    frame.addEventListener("mousemove", (e) => {
+      const rect = frame.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const x = e.clientX - centerX;
+      const y = e.clientY - centerY;
+      const rotateY = (x / rect.width) * 8;
+      const rotateX = -(y / rect.height) * 8;
+      frame.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+    });
+
+    frame.addEventListener("mouseleave", () => {
+      frame.style.transform = "perspective(1000px) rotateX(0) rotateY(0) scale(1)";
+    });
   });
+
+  // ---- 10) Scroll-to-Top Button ----
+  const scrollToTopBtn = document.getElementById("scroll-to-top");
+  if (scrollToTopBtn) {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) {
+        scrollToTopBtn.classList.add("is-visible");
+      } else {
+        scrollToTopBtn.classList.remove("is-visible");
+      }
+    });
+
+    scrollToTopBtn.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+  }
+
+  // ---- 12) Animate Hero Stats on Hero Visibility ----
+  const heroStats = document.querySelectorAll(".hero__stats [data-animate]");
+  if ("IntersectionObserver" in window && heroStats.length) {
+    const heroObserver = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !entry.target.dataset.animated) {
+            entry.target.dataset.animated = "true";
+            animateCount(entry.target);
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    heroStats.forEach((stat) => heroObserver.observe(stat));
+  }
 
 });
