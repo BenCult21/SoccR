@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, { passive: true });
   }
 
-  // ---- 9) iPhone Screenshot Hover - Trigger Stats Animation ----
+  // ---- 9) iPhone Screenshot Hover & Click - Trigger Stats Animation & Navigation ----
   const iPhoneFrames = document.querySelectorAll(".iphone-frame");
   iPhoneFrames.forEach((frame) => {
     frame.addEventListener("mouseenter", () => {
@@ -154,6 +154,13 @@ document.addEventListener("DOMContentLoaded", () => {
             animateCount(counter);
           }
         });
+      }
+    });
+
+    frame.addEventListener("click", () => {
+      const article = frame.closest("article");
+      if (article) {
+        article.scrollIntoView({ behavior: "smooth", block: "center" });
       }
     });
   });
