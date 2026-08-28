@@ -141,28 +141,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }, { passive: true });
   }
 
-  // ---- 8) iPhone Frame 3D Tilt Effekt ----
-  const iPhoneFrames = document.querySelectorAll(".iphone-frame");
-  iPhoneFrames.forEach((frame) => {
-    const container = frame.closest(".feature__media");
-    if (!container) return;
-
-    container.addEventListener("mousemove", (e) => {
-      const rect = container.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-
-      const rotateX = (y - centerY) / 15;
-      const rotateY = (centerX - x) / 15;
-
-      frame.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
-    });
-
-    container.addEventListener("mouseleave", () => {
-      frame.style.transform = "rotateX(0) rotateY(0) scale(1)";
-    });
-  });
 });
