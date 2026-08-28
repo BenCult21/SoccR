@@ -2441,6 +2441,19 @@ main { scroll-behavior: smooth; }
     max-width: 280px;
   }
 
+  .pro__toggle-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.8rem;
+  }
+
+  .pro__toggle {
+    flex-wrap: wrap;
+  }
+
+  .pro__side {
+    padding: 1.5rem;
+  }
+
   .profile-stats {
     grid-template-columns: repeat(2, 1fr);
   }
