@@ -2190,26 +2190,22 @@ main { scroll-behavior: smooth; }
 .iphone-frame {
   position: relative;
   width: 100%;
-  max-width: 360px;
+  max-width: 280px;
   aspect-ratio: 9 / 20;
   background: #000;
-  border-radius: 54px;
-  border: 12px solid #000;
+  border-radius: 48px;
+  border: 0;
   overflow: hidden;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15),
-              0 25px 80px -10px rgba(0, 0, 0, 0.8),
-              inset 0 0 40px rgba(255, 255, 255, 0.08),
-              inset 0 0 20px rgba(51, 225, 122, 0.05);
-  animation: phoneFloat 5s ease-in-out infinite;
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.7),
+              0 0 1px rgba(255, 255, 255, 0.2);
   transition: all 0.6s var(--ease-smooth);
+  transform-style: preserve-3d;
+  perspective: 1200px;
 }
 
 .feature__media:hover .iphone-frame {
-  transform: translateY(-15px) scale(1.02);
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2),
-              0 40px 100px -8px rgba(51, 225, 122, 0.3),
-              inset 0 0 50px rgba(255, 255, 255, 0.12),
-              inset 0 0 30px rgba(51, 225, 122, 0.08);
+  box-shadow: 0 30px 90px rgba(51, 225, 122, 0.25),
+              0 0 1px rgba(255, 255, 255, 0.3);
 }
 
 .iphone-notch {
@@ -2217,10 +2213,10 @@ main { scroll-behavior: smooth; }
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 140px;
-  height: 28px;
+  width: 130px;
+  height: 26px;
   background: #000;
-  border-radius: 0 0 24px 24px;
+  border-radius: 0 0 20px 20px;
   z-index: 10;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.9) inset;
 }
@@ -2230,11 +2226,6 @@ main { scroll-behavior: smooth; }
   height: 100%;
   display: block;
   object-fit: cover;
-}
-
-@keyframes phoneFloat {
-  0%, 100% { transform: translateY(0) rotateZ(0deg) rotateX(0deg); }
-  50% { transform: translateY(-20px) rotateZ(0.5deg) rotateX(1deg); }
 }
 
 /* ============================================================
@@ -2409,6 +2400,10 @@ main { scroll-behavior: smooth; }
     padding: 0.6rem 0.8rem;
   }
 
+  .iphone-frame {
+    max-width: 280px;
+  }
+
   .profile-stats {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -2467,14 +2462,14 @@ main { scroll-behavior: smooth; }
   }
 
   .iphone-frame {
-    max-width: 90%;
-    border-width: 10px;
-    border-radius: 45px;
+    max-width: 85%;
+    border-radius: 40px;
   }
 
   .iphone-notch {
-    width: 120px;
-    height: 24px;
+    width: 110px;
+    height: 22px;
+    border-radius: 0 0 16px 16px;
   }
 }
 
