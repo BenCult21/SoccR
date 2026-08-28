@@ -182,25 +182,9 @@ document.addEventListener("DOMContentLoaded", () => {
         article.scrollIntoView({ behavior: "smooth", block: "center" });
       }
     });
-
-    // ---- 11) 3D Subtle Rotatable iPhone ----
-    frame.addEventListener("mousemove", (e) => {
-      const rect = frame.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-      const x = e.clientX - centerX;
-      const y = e.clientY - centerY;
-      const rotateY = (x / rect.width) * 8;
-      const rotateX = -(y / rect.height) * 8;
-      frame.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
-    });
-
-    frame.addEventListener("mouseleave", () => {
-      frame.style.transform = "perspective(1000px) rotateX(0) rotateY(0) scale(1)";
-    });
   });
 
-  // ---- 10) Scroll-to-Top Button ----
+  // ---- 10) Scroll-to-Top Button with Enhanced Effects ----
   const scrollToTopBtn = document.getElementById("scroll-to-top");
   if (scrollToTopBtn) {
     window.addEventListener("scroll", () => {
@@ -217,25 +201,11 @@ document.addEventListener("DOMContentLoaded", () => {
         behavior: "smooth"
       });
     });
-  }
 
-  // ---- 12) Animate Hero Stats on Hero Visibility ----
-  const heroStats = document.querySelectorAll(".hero__stats [data-animate]");
-  if ("IntersectionObserver" in window && heroStats.length) {
-    const heroObserver = new IntersectionObserver(
-      (entries, obs) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !entry.target.dataset.animated) {
-            entry.target.dataset.animated = "true";
-            animateCount(entry.target);
-            obs.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
-
-    heroStats.forEach((stat) => heroObserver.observe(stat));
+    // Add subtle pulse effect
+    scrollToTopBtn.addEventListener("mouseenter", () => {
+      scrollToTopBtn.style.animation = "scrollBtnPulse 0.6s ease-out";
+    });
   }
 
 });
