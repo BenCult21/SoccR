@@ -267,6 +267,7 @@ button:focus-visible {
   z-index: 50;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 1.5rem;
   padding: var(--space-sm) var(--space-lg);
   background: rgba(7, 15, 11, 0.7);
@@ -282,7 +283,6 @@ button:focus-visible {
   align-items: center;
   gap: 0.6rem;
   text-decoration: none;
-  margin-right: auto;
 }
 
 .brand__icon { border-radius: 9px; }
@@ -302,6 +302,10 @@ button:focus-visible {
   list-style: none;
   display: flex;
   gap: 0.5rem;
+  align-items: center;
+  flex: 1;
+  margin: 0;
+  padding: 0;
 }
 
 .quicknav__link {
@@ -408,14 +412,26 @@ button:focus-visible {
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
+  padding: 0;
+  margin: 0;
 }
 
 .navburger:hover {
   opacity: 0.7;
 }
 
+.navburger span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-origin: center;
+}
+
 .navburger[aria-expanded="true"] span:nth-child(1) {
-  transform: rotate(45deg) translateY(12px);
+  transform: translateY(11px) rotate(45deg);
 }
 
 .navburger[aria-expanded="true"] span:nth-child(2) {
@@ -423,38 +439,34 @@ button:focus-visible {
 }
 
 .navburger[aria-expanded="true"] span:nth-child(3) {
-  transform: rotate(-45deg) translateY(-12px);
-}
-
-.navburger span {
-  display: block;
-  height: 2px;
-  background: var(--text);
-  border-radius: 2px;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform: translateY(-11px) rotate(-45deg);
 }
 
 /* ============================================================
    NAVIGATION MOBILE MENU (is-open state)
    ============================================================ */
 .quicknav.is-open {
-  position: fixed;
-  top: 60px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 0;
-  padding: 0;
-  background: linear-gradient(180deg, rgba(7, 15, 11, 0.98) 0%, rgba(12, 23, 18, 0.95) 100%);
-  backdrop-filter: blur(40px) saturate(180%);
-  -webkit-backdrop-filter: blur(40px) saturate(180%);
-  border: none;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-  z-index: 49;
-  overflow-y: auto;
+  position: fixed !important;
+  top: 60px !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: calc(100vh - 60px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  gap: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: linear-gradient(135deg, rgba(7, 15, 11, 0.95) 0%, rgba(12, 23, 18, 0.92) 100%) !important;
+  backdrop-filter: blur(50px) saturate(180%);
+  -webkit-backdrop-filter: blur(50px) saturate(180%);
+  border: none !important;
+  border-top: 1px solid rgba(51, 225, 122, 0.2) !important;
+  z-index: 49 !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
   animation: slideDown 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
@@ -469,11 +481,19 @@ button:focus-visible {
   }
 }
 
+.quicknav.is-open .brand,
+.quicknav.is-open .theme-toggle,
+.quicknav.is-open .quicknav__cta {
+  display: none;
+}
+
 .quicknav.is-open .quicknav__list {
   flex-direction: column;
   gap: 0;
   width: 100%;
-  padding: var(--space-md) 0;
+  padding: var(--space-md) 0 var(--space-lg) 0;
+  margin: 0;
+  flex: 1;
 }
 
 .quicknav.is-open .quicknav__link {
@@ -484,12 +504,14 @@ button:focus-visible {
   padding: var(--space-md) var(--space-lg);
   border-radius: 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text);
   transition: all 0.25s ease;
 }
 
 .quicknav.is-open .quicknav__link:hover {
-  background: rgba(51, 225, 122, 0.08);
-  transform: translateX(5px);
+  background: rgba(51, 225, 122, 0.1);
+  padding-left: calc(var(--space-lg) + 8px);
+  color: var(--green);
 }
 
 .quicknav.is-open .quicknav__link::after {
@@ -497,18 +519,19 @@ button:focus-visible {
 }
 
 .quicknav.is-open .quicknav__label {
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 600;
+  letter-spacing: 0.05em;
 }
 
 .quicknav.is-open .phone-ico {
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
+  animation: none;
 }
 
-.quicknav.is-open .theme-toggle,
-.quicknav.is-open .quicknav__cta {
-  display: none;
+.quicknav.is-open .phone-ico svg {
+  opacity: 0.8;
 }
 
 /* ============================================================
