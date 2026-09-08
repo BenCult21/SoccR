@@ -41,12 +41,14 @@ document.addEventListener("DOMContentLoaded", () => {
       const isOpen = nav.classList.toggle("is-open");
       burger.setAttribute("aria-expanded", String(isOpen));
       burger.setAttribute("aria-label", isOpen ? "Menü schließen" : "Menü öffnen");
+      document.body.style.overflow = isOpen ? "hidden" : "";
     });
 
     navLinks.forEach((link) => {
       link.addEventListener("click", () => {
         nav.classList.remove("is-open");
         burger.setAttribute("aria-expanded", "false");
+        document.body.style.overflow = "";
       });
     });
   }
