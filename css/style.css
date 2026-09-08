@@ -447,12 +447,14 @@ button:focus-visible {
    ============================================================ */
 .quicknav.is-open {
   position: fixed !important;
-  inset: 0 !important;
-  top: 60px !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
   display: flex !important;
   flex-direction: column !important;
-  width: 100vw !important;
-  height: calc(100vh - 60px) !important;
+  width: 100% !important;
+  height: 100vh !important;
   z-index: 49 !important;
   background: rgba(7, 15, 11, 0.98) !important;
   backdrop-filter: blur(60px) !important;
@@ -482,16 +484,25 @@ button:focus-visible {
   display: none !important;
 }
 
+.quicknav.is-open .navburger {
+  position: fixed !important;
+  top: 1rem !important;
+  right: 1rem !important;
+  z-index: 52 !important;
+  display: flex !important;
+}
+
 .quicknav.is-open .quicknav__list {
   list-style: none !important;
   display: flex !important;
   flex-direction: column !important;
   width: 100% !important;
-  height: 100% !important;
+  flex: 1 !important;
   margin: 0 !important;
-  padding: var(--space-2xl) 0 0 0 !important;
+  padding: 5rem var(--space-lg) 2rem var(--space-lg) !important;
   gap: 0 !important;
   overflow-y: auto !important;
+  overflow-x: hidden !important;
 }
 
 .quicknav.is-open .quicknav__link {
