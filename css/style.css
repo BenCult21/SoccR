@@ -95,6 +95,7 @@ img {
 a {
   color: inherit;
   text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 /* ========== TYPOGRAPHY SYSTEM ========== */
@@ -214,6 +215,23 @@ button:focus-visible {
 
 .btn--primary:active {
   transform: translateY(-2px) scale(1.02);
+}
+
+.btn--primary::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.btn--primary:hover::after {
+  left: 100%;
 }
 
 .btn--ghost {
@@ -350,7 +368,7 @@ button:focus-visible {
 .quicknav__link:focus-visible,
 .quicknav__link.is-active {
   color: var(--green);
-  transform: translateY(-3px);
+  transform: translateY(-3px) scale(1.08);
 }
 
 .quicknav__link:hover::after,
@@ -389,6 +407,23 @@ button:focus-visible {
   background: none;
   border: none;
   cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.navburger:hover {
+  opacity: 0.7;
+}
+
+.navburger[aria-expanded="true"] span:nth-child(1) {
+  transform: rotate(45deg) translateY(12px);
+}
+
+.navburger[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.navburger[aria-expanded="true"] span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-12px);
 }
 
 .navburger span {
@@ -397,6 +432,83 @@ button:focus-visible {
   background: var(--text);
   border-radius: 2px;
   transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* ============================================================
+   NAVIGATION MOBILE MENU (is-open state)
+   ============================================================ */
+.quicknav.is-open {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  padding: 0;
+  background: linear-gradient(180deg, rgba(7, 15, 11, 0.98) 0%, rgba(12, 23, 18, 0.95) 100%);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  z-index: 49;
+  overflow-y: auto;
+  animation: slideDown 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.quicknav.is-open .quicknav__list {
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  padding: var(--space-md) 0;
+}
+
+.quicknav.is-open .quicknav__link {
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  padding: var(--space-md) var(--space-lg);
+  border-radius: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.25s ease;
+}
+
+.quicknav.is-open .quicknav__link:hover {
+  background: rgba(51, 225, 122, 0.08);
+  transform: translateX(5px);
+}
+
+.quicknav.is-open .quicknav__link::after {
+  display: none;
+}
+
+.quicknav.is-open .quicknav__label {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.quicknav.is-open .phone-ico {
+  width: 24px;
+  height: 24px;
+}
+
+.quicknav.is-open .theme-toggle,
+.quicknav.is-open .quicknav__cta {
+  display: none;
 }
 
 /* ============================================================
@@ -529,6 +641,11 @@ button:focus-visible {
   color: var(--green);
   border-color: rgba(51, 225, 122, 0.6);
   background: rgba(51, 225, 122, 0.08);
+  transform: translateY(-3px);
+}
+
+.hero__social a {
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .hero__pitch {
@@ -676,7 +793,11 @@ main { scroll-behavior: smooth; }
 }
 
 .feature:hover {
-  background: linear-gradient(135deg, rgba(51, 225, 122, 0.08) 0%, rgba(255, 190, 69, 0.04) 100%);
+  background: linear-gradient(135deg, rgba(51, 225, 122, 0.12) 0%, rgba(255, 190, 69, 0.06) 100%);
+}
+
+.feature:hover .feature__media {
+  transform: scale(1.02);
 }
 
 @supports not (animation-timeline: view()) {
@@ -698,6 +819,7 @@ main { scroll-behavior: smooth; }
   justify-content: center;
   align-items: center;
   position: relative;
+  transition: transform 0.5s var(--ease-smooth);
 }
 
 .iphone-frame {
@@ -710,7 +832,7 @@ main { scroll-behavior: smooth; }
   -webkit-backdrop-filter: blur(40px) saturate(200%);
   border: 2px solid rgba(51, 225, 122, 0.3);
   border-radius: 40px;
-  padding: 12px;
+  padding: 14px 12px;
   overflow: hidden;
   box-shadow: 0 0 80px rgba(51, 225, 122, 0.15),
               0 0 40px rgba(0, 0, 0, 0.4),
@@ -718,11 +840,13 @@ main { scroll-behavior: smooth; }
               0 0 40px rgba(51, 225, 122, 0.05) inset;
   transition: all 0.6s var(--ease-smooth);
   animation: phoneFloat 5s ease-in-out infinite;
+  display: flex;
+  flex-direction: column;
 }
 
 @keyframes phoneFloat {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-15px) scale(1.01); }
+  0%, 100% { transform: translateY(0) scale(1) rotateX(0deg); }
+  50% { transform: translateY(-15px) scale(1.01) rotateX(2deg); }
 }
 
 .feature__media:hover .iphone-frame {
@@ -734,7 +858,7 @@ main { scroll-behavior: smooth; }
 
 .iphone-notch {
   position: absolute;
-  top: 0;
+  top: 14px;
   left: 50%;
   transform: translateX(-50%);
   width: 150px;
@@ -742,13 +866,16 @@ main { scroll-behavior: smooth; }
   background: var(--bg);
   border-radius: 0 0 20px 20px;
   z-index: 10;
+  pointer-events: none;
 }
 
 .iphone-screen {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 32px;
+  border-radius: 28px;
+  flex: 1;
+  display: block;
 }
 
 .feature__media::before {
@@ -807,6 +934,11 @@ main { scroll-behavior: smooth; }
   -webkit-text-fill-color: transparent;
   background-clip: text;
   line-height: 1.2;
+  transition: transform 0.4s var(--ease-kick);
+}
+
+.feature:hover h2 {
+  transform: translateX(5px);
 }
 
 .feature__lead {
@@ -841,6 +973,11 @@ main { scroll-behavior: smooth; }
   -webkit-text-fill-color: transparent;
   background-clip: text;
   filter: drop-shadow(0 5px 12px rgba(51, 225, 122, 0.2));
+  transition: transform 0.4s var(--ease-kick);
+}
+
+.feature:hover .stat-num {
+  transform: scale(1.1);
 }
 
 .stat-label {
@@ -887,8 +1024,8 @@ main { scroll-behavior: smooth; }
 }
 
 @keyframes mockupFloat {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-18px) scale(1.01); }
+  0%, 100% { transform: translateY(0) scale(1) rotateX(0deg); }
+  50% { transform: translateY(-18px) scale(1.01) rotateX(-2deg); }
 }
 
 .feature__media:hover .ui-mockup {
@@ -1042,7 +1179,14 @@ main { scroll-behavior: smooth; }
   transition: background 0.25s ease;
 }
 
-.stat-item__trigger:hover { background: rgba(51, 225, 122, 0.05); }
+.stat-item__trigger:hover {
+  background: rgba(51, 225, 122, 0.08);
+  transform: translateX(3px);
+}
+
+.stat-item__trigger {
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
 
 .stat-item__icon {
   flex: none;
@@ -1088,7 +1232,7 @@ main { scroll-behavior: smooth; }
 .stat-item__panel {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.4s var(--ease-kick);
+  transition: max-height 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), padding 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
   padding: 0 var(--space-md);
 }
 
@@ -1332,7 +1476,8 @@ main { scroll-behavior: smooth; }
 }
 
 .pro__side:hover {
-  transform: scale(0.98) translateY(-5px);
+  transform: scale(0.98) translateY(-8px);
+  background: linear-gradient(135deg, rgba(51, 225, 122, 0.25) 0%, rgba(51, 225, 122, 0.12) 100%);
 }
 
 .pro__side--pro::before {
@@ -1375,6 +1520,12 @@ main { scroll-behavior: smooth; }
   box-shadow: 0 4px 15px rgba(255, 190, 69, 0.3);
   position: relative;
   z-index: 10;
+  animation: badgePulse 2.5s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+}
+
+@keyframes badgePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
 }
 
 .pro__side h3 {
@@ -1502,7 +1653,9 @@ main { scroll-behavior: smooth; }
 }
 
 .pro__table tbody tr:hover {
-  background: linear-gradient(90deg, rgba(51, 225, 122, 0.08) 0%, rgba(51, 225, 122, 0.03) 100%);
+  background: linear-gradient(90deg, rgba(51, 225, 122, 0.12) 0%, rgba(51, 225, 122, 0.05) 100%);
+  transform: translateX(2px);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .pro__table tbody tr:hover th,
@@ -1616,6 +1769,12 @@ main { scroll-behavior: smooth; }
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: titleFloat 3.5s ease-in-out infinite;
+}
+
+@keyframes titleFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
 
 .cta p {
@@ -1725,6 +1884,11 @@ main { scroll-behavior: smooth; }
 .site-footer__links a:hover {
   color: var(--green);
   border-bottom-color: var(--green);
+  transform: translateY(-2px);
+}
+
+.site-footer__links a {
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .site-footer__links svg {
@@ -1753,6 +1917,7 @@ main { scroll-behavior: smooth; }
 
   .navburger {
     display: flex;
+    z-index: 51;
   }
 
   .hero {
@@ -1822,6 +1987,10 @@ main { scroll-behavior: smooth; }
   .quicknav__list {
     gap: 0.2rem;
     display: none;
+  }
+
+  .quicknav.is-open .quicknav__list {
+    display: flex;
   }
 
   .hero {

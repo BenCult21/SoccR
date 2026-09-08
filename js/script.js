@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
     articles.forEach((article) => navObserver.observe(article));
   }
 
-  // ---- 4) TrackR-Stat-Akkordeon ----
+  // ---- 4) TrackR-Stat-Akkordeon (improved with smooth animation) ----
   const accordion = document.getElementById("stat-accordion");
   if (accordion) {
     const triggers = accordion.querySelectorAll(".stat-item__trigger");
@@ -82,7 +82,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         trigger.setAttribute("aria-expanded", String(!isOpen));
         if (panel) {
-          panel.style.maxHeight = isOpen ? null : panel.scrollHeight + "px";
+          if (!isOpen) {
+            panel.style.maxHeight = panel.scrollHeight + "px";
+            panel.style.paddingTop = "var(--space-md)";
+            panel.style.paddingBottom = "var(--space-md)";
+          } else {
+            panel.style.maxHeight = null;
+            panel.style.paddingTop = "0";
+            panel.style.paddingBottom = "0";
+          }
         }
       });
     });
